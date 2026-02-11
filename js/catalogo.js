@@ -354,17 +354,10 @@
 
                 console.log("Sending order from catalog to chat:", orderText);
 
-                // Send to parent window (Chat Demo)
-                // Use '*' for demo purposes, or restrict if domain is known
-                if (window.parent) {
-                    window.parent.postMessage({
-                        type: 'ORDER_FROM_CATALOG',
-                        text: orderText
-                    }, '*');
-                } else {
-                    console.warn("No parent window found to send order.");
-                    alert("Pedido simulado enviado:\n" + orderText);
-                }
+                // Send to WhatsApp
+                const phoneNumber = "4531810518";
+                const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(orderText)}`;
+                window.open(whatsappUrl, '_blank');
 
                 // Clear cart and reset view
                 clearCart();
